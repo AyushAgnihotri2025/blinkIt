@@ -1,23 +1,55 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Image</title>
+    <link rel="stylesheet" href="{% static 'upload.css' %}">
 </head>
 <body>
-<h2>Upload Image</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-</form>
-<h2>Your Images</h2>
-{% for image in images %}
-    <img src="{{ image.image.url }}" alt="image" style="width: 250px;">
-{% endfor %}
-<form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Logout</button>
-</form>
+    <div class="container">
+        <div class="upload-section">
+            <h2>Upload Images</h2>
+            <form id="file-upload-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <div class="image-container">
+            <h2>Uploaded Images</h2>
+            <div id="uploaded-images" class="gallery">
+                {% for image in images %}
+                    <div class="image-item">
+                        <img src="{{ image.image.url }}" alt="image">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
+    <script>
+        document.getElementById('file-upload-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('/upload/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(image => {
+                const uploadedImagesContainer = document.getElementById('uploaded-images');
+                const imageItem = document.createElement('div');
+                imageItem.classList.add('image-item');
+                const imgElement = document.createElement('img');
+                imgElement.src = image.url;
+                imgElement.alt = 'image';
+                imageItem.appendChild(imgElement);
+                uploadedImagesContainer.appendChild(imageItem);
+            })
+            .catch(error => console.error('Error uploading files:', error));
+        });
+    </script>
 </body>
 </html>

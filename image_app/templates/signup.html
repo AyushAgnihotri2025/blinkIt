@@ -1,14 +1,61 @@
-<!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
 <head>
-    <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo&family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Sign Up</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-    </form>
+    <div class="sign-in-container">
+        <div class="sign-column s1">
+            <div class="sign-column-face s2">
+                <div class="s3">
+                    <div class="sign-header-section">
+                        <div class="sign-in-title">
+                            SignUp Page
+                        </div>
+                        <div class="sign-in-title-alt">
+                            By Blinkit
+                        </div>
+                    </div>
+                    <form method="post" class="input-container">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <!-- {{ form.password }} -->
+                        <a href="#" class="alt-f">
+                            Forgot Password ?
+                        </a>
+                        <button type="submit">
+                            Sign Up
+                        </button>
+                        <div href="#" class="alt-f-full">
+                            Not a Member yet ?
+                            <a href="../signin" class="alt-f">
+                                Sign in
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="sign-column w2">
+            <div class="intro-p">
+                <div class="canvas-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Blinkit-yellow-rounded.svg" alt="logo">
+                </div>
+
+                <div class="intro-content">
+                    <div class="intro-title">
+                        Blinkit
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

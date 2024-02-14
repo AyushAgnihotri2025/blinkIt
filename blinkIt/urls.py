@@ -23,7 +23,7 @@ from blinkIt import settings, views
 from blinkIt.views import custom_logout
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('', include('image_app.urls')),
-                  path('logout/', custom_logout, name='logout'),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('admin/', admin.site.urls),
+    path('', include('image_app.urls')),
+    path('logout/', custom_logout, name='logout'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
