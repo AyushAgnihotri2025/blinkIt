@@ -11,7 +11,7 @@ def signup(request):
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()
-            auth_user = authenticate(username=user.username, password=password)
+            auth_user = authenticate(username=user.username, first_name=user.first_name, last_name=user.last_name, email=user.email, password=password)
             if auth_user is not None:
                 login(request, auth_user)
                 return redirect('upload_image')
