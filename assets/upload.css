@@ -12,10 +12,20 @@ body {
 .container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .upload-section {
@@ -57,7 +67,7 @@ button[type="submit"]:hover {
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
+    gap: 20px;
 }
 
 .image-item {
