@@ -202,8 +202,9 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
 .canvas-logo img{
-    border-radius: 8px;
+    border-radius: 20%;
     box-shadow: 0 0 25px #00000061;
     margin: 10px auto;
 }
